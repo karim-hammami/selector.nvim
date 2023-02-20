@@ -133,13 +133,14 @@ M.float = function()
     local winWidth = math.ceil(width * 0.8);
     local winHeight = math.ceil(height * 0.8);
     local winConfig = {
-        relative = "editor",
+        relative = "win",
         width = winWidth,
         height = winHeight,
         col = math.ceil((width - winWidth) / 2),
         row = math.ceil((height - winHeight) / 2) - 1,
         style = "minimal",
-        focusable = false
+        focusable = false,
+        border = "rounded"
     }
     vim.api.nvim_open_win(buf, true, winConfig)
     vim.cmd("Ex")
