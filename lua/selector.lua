@@ -145,4 +145,10 @@ M.float = function()
     vim.cmd("Ex")
 end
 
+M.split = function()
+    vim.cmd("vsplit")
+    vim.cmd("wincmd l")
+    vim.cmd("Ex")
+end
+
 return M
