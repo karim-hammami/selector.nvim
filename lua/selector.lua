@@ -125,6 +125,24 @@ M.selectCopy = function()
     vim.cmd("y")
 end
 
-
+M.float = function()
+    local buf = vim.api.nvim_get_current_buf()
+    local stats = vim.api.nvim_list_uis()[1]
+    local width = stats.width;
+    local height = stats.height;
+    local winWidth = math.ceil(width * 0.8);
+    local winHeight = math.ceil(height * 0.8);
+    local winConfig = {
+        relative = "editor",
+        width = winWidth,
+        height = winHeight,
+        col = math.ceil((width - winWidth) / 2),
+        row = math.ceil((height - winHeight) / 2) - 1,
+        style = "minimal",
+        focusable = false
+    }
+    vim.api.nvim_open_win(buf, true, winConfig)
+    vim.cmd("Ex")
+end
 
 return M
