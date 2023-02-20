@@ -105,4 +105,26 @@ M.select = function(outer)
     select_range(bufnr, start_row, start_col, end_row, end_col, mode)
 end
 
+local get_master_node = function()
+    local node = ts_utils.get_node_at_cursor()
+    if node == nil then
+        error("No Treesitter parser found.")
+    end
+    local parent = node:parent()
+    local root = ts_utils.get_root_for_node(node)
+    local start_row = node:start()
+    while (parent ~= nil and parent ~= root and parent:start() == start_row) do
+        node = parent
+        parent = node:parent()
+    end
+    return node
+end
+
+M.selectCopy = function(outer)
+    local bufnr = vim.api.nvim_get_current_buf()
+    local node = get_master_node()
+    ts_utils.update_selection(bufnr, node)
+    vim.cmd("y")
+end
+
 return M
