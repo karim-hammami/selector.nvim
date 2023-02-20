@@ -2,6 +2,7 @@
 doing cool neovim stuff (select entire function, select entire function and copy, open netrw in float menu, open netrw in split)
 
 ## Installation
+Using packer in lua
 ```lua
 use "karim-hammami/selector.nvim"
 ```
