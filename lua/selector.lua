@@ -120,11 +120,11 @@ local get_master_node = function()
     return node
 end
 
-M.selectCopy = function(outer)
-    local bufnr = vim.api.nvim_get_current_buf()
-    local node = get_master_node()
-    ts_utils.update_selection(bufnr, node)
+M.selectCopy = function()
+    M.select()
     vim.cmd("y")
 end
+
+
 
 return M
